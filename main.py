@@ -7,6 +7,7 @@ Didukung: ChatGPT 🤖
 import os
 from time import sleep
 from utils.bmr_calculator import pria, wanita
+from utils.kebutuhan_kalori import aktivitas_fisik_pria, aktivitas_fisik_wanita
 
 os.system("cls")
 
@@ -26,20 +27,12 @@ def main():
       os.system("cls")
       continue
     
-    
     elif jenis_kelamin == "L":
       tinggi_badan = int(input("Berapa tinggi Anda? (cm) : "))
       berat_badan = int(input("Berapa berat badan Anda? (kg) : "))
       hasil_bmr_pria = pria(tinggi_badan=tinggi_badan, berat_badan=berat_badan, usia=usia)
       
-      print("")
-      print("=============================")
-      print("KEBUTUHAN KALORI DALAM SEHARI")
-      print("=============================")
-      print("1. Hampir tidak pernah berolahraga")
-      print("2. Jarang berolahraga")
-      print("3. Sering berolahraga atau beraktivitas fisik berat")
-      print("")
+      aktivitas_fisik_pria()
       tingkat_aktivitas_fisik = int(input("Pilih tingkat intensitas aktivitas fisik Anda : "))
       
       if tingkat_aktivitas_fisik == 1:
@@ -70,14 +63,8 @@ def main():
       tinggi_badan = int(input("Berapa tinggi Anda? (cm) : "))
       berat_badan = int(input("Berapa berat badan Anda? (kg) : "))
       hasil_bmr_wanita = wanita(tinggi_badan=tinggi_badan, berat_badan=berat_badan, usia=usia)
-      print("")
-      print("=============================")
-      print("KEBUTUHAN KALORI DALAM SEHARI")
-      print("=============================")
-      print("1. Hampir tidak pernah berolahraga")
-      print("2. Jarang berolahraga")
-      print("3. Sering berolahraga atau beraktivitas fisik berat")
-      print("")
+      
+      aktivitas_fisik_wanita()
       tingkat_aktivitas_fisik = int(input("Pilih tingkat intensitas aktivitas fisik Anda : "))
       
       if tingkat_aktivitas_fisik == 1:

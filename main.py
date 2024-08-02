@@ -6,16 +6,20 @@ Didukung: ChatGPT 🤖
 
 import os
 from time import sleep
-from utils.bmr_calculator import pria, wanita
-from utils.kebutuhan_kalori import aktivitas_fisik_pria, aktivitas_fisik_wanita
+# from basal_metabolic_rate.banner import banner
+# from basal_metabolic_rate.bmr_calculator import pria, wanita
+# from basal_metabolic_rate.calorie_needs import aktivitas_fisik_pria, aktivitas_fisik_wanita
+# from basal_metabolic_rate.physical_activity.man import female_level_1,female_level_2,female_level_3
+# from basal_metabolic_rate.physical_activity.woman import female_level_1,female_level_2,female_level_3
+import basal_metabolic_rate
+import basal_metabolic_rate.physical_activity
 
 os.system("cls")
 
 def main():
   while True:
-    print("="*28)
-    print("KALKULATOR KKEBUTUHAN KALORI")
-    print("="*28)
+    basal_metabolic_rate.banner()
+
     usia = int(input("Usia anda : "))
     jenis_kelamin = str(input("Apa jenis kelamin Anda? (L/P) : "))
     
@@ -30,79 +34,45 @@ def main():
     elif jenis_kelamin == "L":
       tinggi_badan = int(input("Berapa tinggi Anda? (cm) : "))
       berat_badan = int(input("Berapa berat badan Anda? (kg) : "))
-      hasil_bmr_pria = pria(tinggi_badan=tinggi_badan, berat_badan=berat_badan, usia=usia)
+      hasil_bmr_pria = basal_metabolic_rate.pria(tinggi_badan=tinggi_badan, berat_badan=berat_badan, usia=usia)
       
-      aktivitas_fisik_pria()
+      basal_metabolic_rate.aktivitas_fisik_pria()
       tingkat_aktivitas_fisik = int(input("Pilih tingkat intensitas aktivitas fisik Anda : "))
       
       if tingkat_aktivitas_fisik == 1:
-        hasil_tingkat_aktivitas_fisik = hasil_bmr_pria * 1.2
-        print("")
-        print(f"Berarti BMR-nya sebesar {hasil_bmr_pria:.0f} kkal, sedangkan kebutuhan kalorinya sebesar {hasil_tingkat_aktivitas_fisik:.0f} kkal")
-        sleep(7)
-        os.system("cls")
+        basal_metabolic_rate.physical_activity.male_level_1(hasil_bmr_pria=hasil_bmr_pria)
         continue
-      
       elif tingkat_aktivitas_fisik == 2:
-        hasil_tingkat_aktivitas_fisik = hasil_bmr_pria * 1.3
-        print("")
-        print(f"Berarti BMR-nya sebesar {hasil_bmr_pria:.0f} kkal, sedangkan kebutuhan kalorinya sebesar {hasil_tingkat_aktivitas_fisik:.0f} kkal")
-        sleep(7)
-        os.system("cls")
+        basal_metabolic_rate.physical_activity.male_level_2(hasil_bmr_pria=hasil_bmr_pria)
         continue
-      
       elif tingkat_aktivitas_fisik == 3:
-        hasil_tingkat_aktivitas_fisik = hasil_bmr_pria * 1.4
-        print("")
-        print(f"Berarti BMR-nya sebesar {hasil_bmr_pria:.0f} kkal, sedangkan kebutuhan kalorinya sebesar {hasil_tingkat_aktivitas_fisik:.0f} kkal")
-        sleep(7)
-        os.system("cls")
+        basal_metabolic_rate.physical_activity.male_level_3(hasil_bmr_pria=hasil_bmr_pria)
         continue
         
     elif jenis_kelamin == "P":
       tinggi_badan = int(input("Berapa tinggi Anda? (cm) : "))
       berat_badan = int(input("Berapa berat badan Anda? (kg) : "))
-      hasil_bmr_wanita = wanita(tinggi_badan=tinggi_badan, berat_badan=berat_badan, usia=usia)
+      hasil_bmr_wanita = basal_metabolic_rate.wanita(tinggi_badan=tinggi_badan, berat_badan=berat_badan, usia=usia)
       
-      aktivitas_fisik_wanita()
+      basal_metabolic_rate.aktivitas_fisik_wanita()
       tingkat_aktivitas_fisik = int(input("Pilih tingkat intensitas aktivitas fisik Anda : "))
       
       if tingkat_aktivitas_fisik == 1:
-        hasil_tingkat_aktivitas_fisik = hasil_bmr_wanita * 1.2
-        print("")
-        print(f"Berarti BMR-nya sebesar {hasil_bmr_wanita:.0f} kkal, sedangkan kebutuhan kalorinya sebesar {hasil_tingkat_aktivitas_fisik:.0f} kkal")
-        sleep(7)
-        os.system("cls")
+        basal_metabolic_rate.physical_activity.female_level_1(hasil_bmr_wanita=hasil_bmr_wanita)
         continue
-      
       elif tingkat_aktivitas_fisik == 2:
-        hasil_tingkat_aktivitas_fisik = hasil_bmr_wanita * 1.3
-        print("")
-        print(f"Berarti BMR-nya sebesar {hasil_bmr_wanita:.0f} kkal, sedangkan kebutuhan kalorinya sebesar {hasil_tingkat_aktivitas_fisik:.0f} kkal")
-        sleep(7)
-        os.system("cls")
+        basal_metabolic_rate.physical_activity.female_level_2(hasil_bmr_wanita=hasil_bmr_wanita)
         continue
-      
       elif tingkat_aktivitas_fisik == 3:
-        hasil_tingkat_aktivitas_fisik = hasil_bmr_wanita * 1.4
-        print("")
-        print(f"Berarti BMR-nya sebesar {hasil_bmr_wanita:.0f} kkal, sedangkan kebutuhan kalorinya sebesar {hasil_tingkat_aktivitas_fisik:.0f} kkal")
-        sleep(7)
-        os.system("cls")
+        basal_metabolic_rate.physical_activity.female_level_3(hasil_bmr_wanita=hasil_bmr_wanita)
         continue
       
+    else:
       print("")
-      print(f"BMR anda sebesar {hasil_bmr_wanita:.0f} kkal")
+      print(f"Input yang anda Masukan Salah, Silahkan input ulang")
       sleep(7)
       os.system("cls")
       continue
       
-    else:
-      print("")
-      print("Input salah, silahkan masukkan input yang valid.")
-      sleep(2)
-      os.system("cls")
-      continue
-    
 if __name__ == "__main__":
   main()
